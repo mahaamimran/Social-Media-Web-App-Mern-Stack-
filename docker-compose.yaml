@@ -1,0 +1,34 @@
+services:
+  frontend:
+    build: ./client
+    expose:
+      - "80"
+    networks:
+      - default
+  
+  backend:
+    build:
+      context: ./Server
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    networks:
+      - default
+    depends_on:
+      - mydb
+
+  mydb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+     - mydbvolumes:/data/db
+
+volumes:
+  mydbvolumes:
+    
+    
+networks:
+  default:
+
+

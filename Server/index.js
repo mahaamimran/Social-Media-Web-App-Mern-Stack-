@@ -26,13 +26,13 @@ app.use(cors());
 dotenv.config();
 
 mongoose.connect
-    (process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true }
+    (process.env.MONGO_DB,
     ).then(() =>
         app.listen(process.env.PORT, () => console.log(`listening at ${process.env.PORT}`))
     ).catch((error) =>
-        console.log('error')
+        console.log(error.message)
     )
-
+    .catch((error) => console.log(error));
 
 // uses of routes
 
